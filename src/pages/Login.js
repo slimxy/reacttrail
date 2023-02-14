@@ -6,11 +6,16 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function login(e) {
+  async function login(e) {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password);
 
-    if (login) console.log("logged in ");
+    try {
+      signInWithEmailAndPassword(auth, email, password).then(() =>
+        console.log("logged in")
+      );
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <div className="main">
