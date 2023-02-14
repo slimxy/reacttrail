@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
+// import "font-awesome/css/font-awesome.min.css";
+import Like from "../components/Like";
 import { getMovies } from "../Data/test";
 class Contact extends Component {
   state = {
@@ -13,6 +15,13 @@ class Contact extends Component {
     this.state.Movies.map((m) => (
       <img src={movie.mainImage} alt="pics" style={{ width: 70, height: 70 }} />
     ));
+  };
+  handleLike = (movie) => {
+    const movies = [...this.state.Movies];
+    const index = movies.indexOf(movie);
+    movies[index] = { ...movies[index] };
+    movies[index].liked = !movies[index].liked;
+    this.setState({ movies });
   };
   render() {
     if (this.state.Movies.length === 0)
@@ -42,7 +51,11 @@ class Contact extends Component {
                 <td>{movie.rate}</td>
                 <td>{movie.genre}</td>
                 <td>
-                  <i className="fa fa-heart-o" aria-hidden="false"></i>
+                  {/* <FontAwesomeIcon icon="fa-solid fa-heart" />{" "} */}
+                  <Like
+                    onClick={() => this.handleLike(movie)}
+                    liked={movie.liked}
+                  />
                 </td>
                 <td>
                   <img

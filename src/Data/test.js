@@ -8,6 +8,7 @@ export const myMovies = [
       "../img/blackadam1.jpeg",
       "../img/blackadam3.jpg",
     ],
+    liked: true,
     year: 2022,
     rate: "69%",
     genre: "Action ",
