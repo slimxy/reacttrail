@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
+import ViewMovie from "./ViewMovie";
 // import "font-awesome/css/font-awesome.min.css";
 import Like from "../components/Like";
 import { getMovies } from "../Data/test";
+import { Link } from "react-router-dom";
 class Contact extends Component {
   state = {
     Movies: getMovies(),
@@ -22,12 +24,15 @@ class Contact extends Component {
     movies[index] = { ...movies[index] };
     movies[index].liked = !movies[index].liked;
     this.setState({ movies });
+    console.log("liked", movie);
   };
   render() {
     if (this.state.Movies.length === 0)
       return <h2>There is no movie in the Database</h2>;
 
     return (
+      // <div className="content">
+
       <div className="main">
         <p> Showing {this.state.Movies.length} movies in the database.</p>
         <table className="table mt-58px ">
@@ -53,8 +58,8 @@ class Contact extends Component {
                 <td>
                   {/* <FontAwesomeIcon icon="fa-solid fa-heart" />{" "} */}
                   <Like
-                    onClick={() => this.handleLike(movie)}
                     liked={movie.liked}
+                    onClick={() => this.handleLike(movie)}
                   />
                 </td>
                 <td>
@@ -73,18 +78,16 @@ class Contact extends Component {
                   </button>
                 </td>
                 <td>
-                  <button
-                    className="btn btn-sm btn-primary"
-                    onClick={() => this.ViewMovie(movie)}
-                  >
-                    View
-                  </button>
+                  <Link to={`/ViewMovie/${movie.id}`}>
+                    <button className="btn btn-sm btn-primary">View </button>
+                  </Link>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      // </div>
     );
   }
 }

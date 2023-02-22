@@ -8,19 +8,22 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="main  ">
-        <div className="movieContent m-4  ">
+      <div className="main">
+        {/* <div className="content  "> */}
+        <div className="movieContent m-4 ">
           {this.state.Movies.map((movie) => (
             <ul
               className="list-group m-2"
               key={movie.id}
               style={{
                 listStyle: "none",
-                width: "75%",
+                width: "85%",
                 height: "720px",
               }}
             >
-              <li className="list-group-item">{movie.name}</li>
+              <li className="list-group-item">
+                <h3>{movie.name}</h3>
+              </li>
               <li className="list-group-item">
                 <img
                   src={movie.mainImage}
@@ -32,6 +35,7 @@ class Home extends Component {
             </ul>
           ))}
         </div>
+        {/* </div> */}
       </div>
     );
   }
